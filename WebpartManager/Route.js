@@ -1,9 +1,13 @@
-/**
- * Route.js
- * @author Wilfredo Pacheco
- */
+//
+// Route.js
+// @author Wilfredo Pacheco
+//
+// Defines HTTP REEQUEST Methods used by REST
+
 
 const { href } = location;
+
+//The document libary containing these files MUST be called HomePageRepo.
 export const ParentFolderName = 'HomePageRepo';
 export const SiteCollectionUrl = href.split(ParentFolderName)[0];
 

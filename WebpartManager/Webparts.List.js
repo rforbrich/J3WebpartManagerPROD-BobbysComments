@@ -1,9 +1,14 @@
-/**
- * Webparts.List.js
- * @author Wilfredo Pacheco
- */
+//
+// Webparts.List.js
+//  @author Wilfredo Pacheco
+ //
+
+//Defines all the types of Lists and fields used by the tool
 
 export default [{
+
+
+//Layout list
     title: 'Layout',
     id: 'layout',
     schema: {
@@ -124,8 +129,13 @@ export default [{
         "WebpartSide":"RightSide",
         "WebpartOrder":2
     }]
+
     
+
 },{
+
+//Webpart Content list
+
     title: 'Webpart Content',
     id: 'webpart-content',
     schema: {
@@ -154,6 +164,9 @@ export default [{
         'template-3',
     ]
 },{
+
+//Carousel list
+
     title: 'Carousel',
     id: 'carousel',
     schema: {
@@ -185,6 +198,11 @@ export default [{
         'template-1',
     ]
 },{
+
+
+//Content Element 
+
+
     title: 'Content Element',
     id: 'content-element',
     schema: {
@@ -216,6 +234,10 @@ export default [{
         'template-1',
     ]
 },{
+
+
+//Staff list 
+
     title: 'Staff',
     id: 'staff',
     schema: {
@@ -283,6 +305,11 @@ export default [{
         'template-2',
     ]
 },{
+
+
+    
+//Announcemnts 
+
     title: 'Announcements',
     id: 'announcements',
     schema: {
@@ -320,6 +347,10 @@ export default [{
         'template-3',
     ]
 },{
+
+
+//Events
+
     title: 'Events',
     id: 'events',
     schema: {
@@ -357,6 +388,11 @@ export default [{
         'template-3',
     ]
 },{
+
+
+
+//Main Links
+
     title: 'Main Links',
     id: 'main-links',
     schema: {
@@ -385,6 +421,11 @@ export default [{
         'template-3',
     ]
 },{
+
+
+
+//Branch Links
+
     title: 'Branch Links',
     id: 'branch-links',
     schema: {
@@ -425,6 +466,12 @@ export default [{
     ]
 
 },{
+
+
+
+//Contact info
+
+
     title: 'Contact Info',
     id: 'contact-info',
     schema: {
@@ -461,6 +508,11 @@ export default [{
     ]
 
 },{
+
+
+//Clocks
+
+
     title: 'Clocks',
     id: 'clock-container',
     schema: {

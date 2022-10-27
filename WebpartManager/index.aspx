@@ -1,3 +1,6 @@
+
+<!-- Framework for the webpart manager -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

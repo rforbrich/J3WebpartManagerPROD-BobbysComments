@@ -8,6 +8,10 @@ import CreateList from "./Factory.min.js";
 import Route, { SiteCollectionUrl } from "./Route.js";
 import webparts from "./Webparts.List.js";
 
+
+
+// Adds a list
+
 export async function InstallList(event){
 
     const isPointerEvent = event?.constructor?.name === 'PointerEvent';
@@ -34,6 +38,8 @@ export async function InstallList(event){
     const Web = this.Web;
     const Callback = this.callback;
     const List = await Route.Get(`${Web.Url}/_api/Web/Lists/getByTitle('${schema.list.Title}')`);
+    
+    // Check to see if the list already exists
     if (List)
     {
         alert('This list has already been created!');
@@ -66,6 +72,8 @@ export async function InstallList(event){
     }
 }
 
+
+//Removes list
 export async function RemoveList(event){
 
     const isPointerEvent = event?.constructor?.name === 'PointerEvent';
@@ -92,6 +100,8 @@ export async function RemoveList(event){
     const Web = this.Web;
     const List = await Route.Get(`${Web.Url}/_api/Web/Lists/getByTitle('${schema.list.Title}')`);
     const ReqDigest = await Route.GetRequestDigest();
+
+    //Check to see if the list exists
     if (!List)
     {
         alert('This list has not been created!');
@@ -102,16 +112,21 @@ export async function RemoveList(event){
     .then(data => location.reload());
 }
 
+//Picture of X
 const xIcon = /*svg*/`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
 </svg>`;
 
+//Picture of Check
 const checkIcon = /*svg*/`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
 </svg>`;
 
+
+
+//Gets the webpart list from webparts.list.js
 (function(WEBPARTS = webparts){
 
     const Container = document.createElement('div');
