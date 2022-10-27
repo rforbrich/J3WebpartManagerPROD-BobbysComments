@@ -1,7 +1,14 @@
-/**
- * homepage.js
- * @author John W. Westhuis
- */
+//
+// homepage.js
+// @author John W. Westhuis
+//
+
+// Dynamically builds homepage.aspx based on page layout instructions from the 
+//Layout list and data contained in all other lists used by the tool (e.g, Carousel, 
+// Annoucements, Staff Info, etc...)
+
+
+
 
 function ShowBody(el, selector) {
     let parent = el.parentElement
@@ -15,17 +22,25 @@ function ShowBody(el, selector) {
     }
 }
 
+
+//On Load
 (function(){
 
     const appWebUrl = _spPageContextInfo.webAbsoluteUrl + '/';
 
     console.info('Home Page | Start Creation.....');
+
+
+    // Open the Layout list in SharePoint, which contains all the webparts, order, and side for all other webparts on the page.
+
     getListItem("Layout", "?$orderby=WebpartOrder").then(webparts => {
         // console.log("success", webparts);
         const leftGroup = document.getElementById("left-group")
         const rightGroup = document.getElementById("right-group")
 
         webparts.forEach(webpart => {
+
+            // Check to see if the webparts are to be added to the left side or the right side. 
             let el = BuildWebPart(webpart.WebpartType);
             if (webpart.WebpartSide === "LeftSide") leftGroup.append(el);
             else rightGroup.append(el);
@@ -34,6 +49,10 @@ function ShowBody(el, selector) {
     }).catch(e => {
         console.log("error", e)
     })
+
+
+
+     // This function dynamically creates a webpart based on the type and it's SharePoint list attributes. 
 
     function BuildWebPart(type) {
 
@@ -45,6 +64,9 @@ function ShowBody(el, selector) {
                 console.log("no data found for " + type)
                 return div
             }
+
+
+            // Webpart Content
 
             if (type === "WebpartContent") {
                 // console.log("Creating Title", webpartData)
@@ -68,6 +90,11 @@ function ShowBody(el, selector) {
                 })
 
             }
+
+
+
+
+            /// Carousels 
 
             else if (type === "Carousel") {
                 // console.log("Creating Carousel", webpartData)
@@ -139,7 +166,7 @@ function ShowBody(el, selector) {
                    
                 })
 
-                //add the buttons
+                //add the carousel buttons
                 let el = div.querySelector(".carousel-inner")
                 el.innerHTML = el.innerHTML +
                     `<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -158,6 +185,9 @@ function ShowBody(el, selector) {
 
             }
 
+
+
+            // Content Elements 
             else if (type === "ContentElement") {
 
                 // console.log("Creating Content", webpartData)
@@ -181,6 +211,8 @@ function ShowBody(el, selector) {
 
             }
 
+
+            // Staff Info Boxes 
             else if (type === "Staff") {
 
                 //Leader
@@ -307,6 +339,9 @@ function ShowBody(el, selector) {
                 }
             }
 
+
+            // Announcements
+
             else if (type === "Announcements") {
 
                 // console.log("Creating Announcements", webpartData)
@@ -345,6 +380,9 @@ function ShowBody(el, selector) {
 
             }
 
+
+
+            // Event types
             else if (type === "Events") {
 
                 // console.log("Creating Events", webpartData)
@@ -383,6 +421,9 @@ function ShowBody(el, selector) {
 
             }
 
+
+            //Main Links
+
             else if (type === "MainLinks") {
 
                 // console.log("Creating MainLinks", webpartData)
@@ -419,6 +460,8 @@ function ShowBody(el, selector) {
 
             }
 
+
+            //Branch Links
             else if (type === "BranchLinks") {
 
                 // console.log("Creating BranchLinks", webpartData)
@@ -472,6 +515,9 @@ function ShowBody(el, selector) {
 
             }
 
+
+
+            //Contact Info
             else if (type === "ContactInfo") {
 
                 // console.log("Creating Contact Info", webpartData)
@@ -517,6 +563,8 @@ function ShowBody(el, selector) {
 
             }
 
+
+            //Clocks
             else if (type === "Clocks") {
 
                 console.log("Creating Clocks", webpartData)
@@ -708,6 +756,8 @@ function ShowBody(el, selector) {
 
     }
 
+
+    // Retrieve list item 
     function getListItem(listName, filter) {
         return new Promise((resolve, reject) => {
             let url = appWebUrl + `_api/web/lists/getByTitle('${listName}')/items` + (filter ? filter : "")
